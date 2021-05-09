@@ -2,6 +2,10 @@ $bright-cyan: #4ac1ff;
 $slate-grey: #666f77;
 $very-light-grey: #bbb;
 
+@mixin hover-state {
+    background-color: darken($bright-cyan, 7%);
+}
+
 .container{
  max-width: 1200px;
 }
@@ -20,8 +24,12 @@ $very-light-grey: #bbb;
 .active{
     background-color: $bright-cyan;
     border-radius: 6px; 
+    transition: background-color .25s;
     a{
         color: white !important;
+    }
+    &:hover{
+        @include hover-state;
     }
 }
 body{
@@ -138,6 +146,10 @@ section{
             padding: 0 40px;
             font-size: 18px;
             font-weight: 300;
+            transition: background-color .25s;
+            &:hover{
+               @include hover-state;
+            }
         }
         @media screen and (max-width: 1200px) {
            padding-top: 8%;
@@ -170,7 +182,7 @@ section{
 }
 
 
-.cards{
+#cards{
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
@@ -182,8 +194,14 @@ section{
         margin: 10px;
         text-align: center;
         color: $slate-grey;
-        font-weight: 300;;
+        font-weight: 300;
+        top: 0;
+        left: 0;
+        transition: top .2s, left .2s;
         .circle{
+            background-image: url('./assets/icon.png');
+            background-repeat: no-repeat;
+            background-position: 32px;
             margin: 30px auto;
             padding: 20px;
             background-color: $bright-cyan;
@@ -203,6 +221,19 @@ section{
             font-size: 18px;
             line-height: 2;
         }
+
+        &:hover{
+            position: relative;
+            transition: top .2s, left .2s;
+            box-shadow: 5px 5px 7px -7px rgba(0,0,0,0.6);
+            top: -2px;
+            left: -2px;
+            .circle{
+                animation-name: gear;
+                animation-duration: 1s; 
+                animation-timing-function: ease-in-out;
+            }
+        }
         @media screen and (max-width: 950px) {
             flex: 0 1 calc(42% - 1em);
          }
@@ -214,4 +245,9 @@ section{
     @media screen and (max-width: 950px) {
         justify-content: space-evenly;
      }
+}
+
+@keyframes gear {
+   from {transform: rotate(0deg);}
+   to {transform: rotate(360deg)} 
 }
