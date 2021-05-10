@@ -2,6 +2,6 @@
 Home page mockup for Coalmarch code challenge
 
 ## To Run
-npm install.
-parcel index.html.
+1. npm install
+2. parcel index.html.
 
